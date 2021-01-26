@@ -18,6 +18,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="action">
+                    <a href="{{route('admin.posts.edit', ['post' => $posts->id])}}"
+                       class="btn btn-warning">
+                        Modifica
+                    </a>
+                    <form method="POST" class="d-inline-block"
+                          action="{{route('admin.posts.destroy', ['post' =>$posts->id])}}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
+                            Cancella
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

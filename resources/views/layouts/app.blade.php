@@ -54,6 +54,9 @@
                         <li>
                             <a class="nav-link" href="{{route('contatti')}}">Contatti</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="{{route('posts.index')}}">Posts</a>
+                        </li>
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
