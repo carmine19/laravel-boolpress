@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+
+// rotte pubbliche che fanno riferimento al controller homecontroller
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/contatti', 'HomeController@contatti')->name('contatti');
+Route::get('/posts', 'PostController@index')->name('posts.index');
+
+//rotte che servono ai file di autenticazone
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//rotte lato admin che fanno riferimento al parte riservata da loggati
+Route::middleware('auth')->namespace('Admin')->prefix('admin')->name('admin.')->group(function() {
+
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::resource('/posts', 'PostController');
+});
