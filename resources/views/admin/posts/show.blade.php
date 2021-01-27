@@ -16,6 +16,9 @@
                         <div class="box-content">
                             <p>{{$posts->content}}</p>
                         </div>
+                        <div class="box-category">
+                            <p> Categoria: {{$posts->category->name}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="action">
