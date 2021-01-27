@@ -17,7 +17,7 @@
                             <p>{{$posts->content}}</p>
                         </div>
                         <div class="box-category">
-                            <p> Categoria: {{$posts->category->name}}</p>
+                            <p> Categoria: {{$posts->category ? $posts->category->name : '-'}}</p>
                         </div>
                     </div>
                 </div>

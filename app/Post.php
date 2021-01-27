@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'subtitle', 'content', 'slug', 'img'];
+    protected $fillable = ['title', 'subtitle', 'content', 'slug', 'img', 'category_id'];
 
     //con questa funzione colleghiamo e mappiamo il model Category con quello Post,
     //in questo caso abbiamo una relazione 1(tabella category) a molti(tabella post),
