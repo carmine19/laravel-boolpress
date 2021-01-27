@@ -3,42 +3,39 @@
 @section('content')
 
 
-    <div class="container">
+  <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Tutti gli utenti</h1>
+                <h1>Tutti le categorie</h1>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Titolo</th>
-                            <th scope="col">Sottotitolo</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($posts as $ele)
+                        @foreach($categories as $ele)
                             <tr>
                                 <td>
                                     {{ $ele->id }}
                                 </td>
                                 <td>
-                                    {{ $ele->title }}
+                                    {{ $ele->name }}
                                 </td>
                                 <td>
-                                    {{ $ele->subtitle }}
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.posts.show', ['post' => $ele->id])}}"
+                                    <a href="{{route('admin.categories.show', ['category' => $ele->id])}}"
                                         class="btn btn-success">
                                         Visualizza
                                      </a>
-                                    <a href="{{route('admin.posts.edit', ['post' => $ele->id])}}"
+                                    <a href="{{route('admin.categories.edit', ['category' => $ele->id])}}"
                                         class="btn btn-warning">
                                         Modifica
                                      </a>
                                     <form method="POST" class="d-inline-block"
-                                    action="{{route('admin.posts.destroy', ['post' =>$ele->id])}}">
+                                    action="{{route('admin.categories.destroy' , ['category' => $ele->id])}}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
@@ -53,7 +50,7 @@
 
                 </table>
                 <div class="col-lg-12">
-                    <a href="{{route('admin.posts.create')}}" class="btn btn-info">Aggiungi post</a>
+                    <a href="{{route('admin.categories.create')}}" class="btn btn-info">Aggiungi categoria</a>
                 </div>
             </div>
         </div>
@@ -61,3 +58,4 @@
 
 
 @endsection
+
