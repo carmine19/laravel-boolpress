@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Inserisci un nuovo post</h1>
+                    <h1>Modifica post</h1>
                     <form method="POST" action="{{route('admin.posts.update', ['post' => $post])}}">
                         @csrf
                         @method('PUT')
@@ -47,6 +47,19 @@
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Seleziona i tag:</p>
+                            @foreach ($tags as $tag)
+                                <div class="form-check">
+                                    <input name="tags[]" class="form-check-input" type="checkbox"
+                                           value="{{ $tag->id }}">
+                                    <label class="form-check-label">
+                                        {{ $tag->name }}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
 
                         <button type="submit" class="btn btn-primary">Modifica</button>

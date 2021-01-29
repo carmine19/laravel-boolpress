@@ -48,6 +48,20 @@
                             </select>
                         </div>
 
+                        <div class="form-group">
+                            <p>Seleziona i tag:</p>
+                            @foreach ($tags as $tag)
+                                <div class="form-check">
+                                    <!-- con le chekbox ci dobbiamo ricordare di passare il name come array -->
+                                    <input name="tags[]" class="form-check-input" type="checkbox"
+                                           value="{{ $tag->id }}">
+                                    <label class="form-check-label">
+                                        {{ $tag->name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+
                         <button type="submit" class="btn btn-primary">Aggiungi</button>
                     </form>
                 </div>

@@ -19,6 +19,15 @@
                         <div class="box-category">
                             <p> Categoria: {{$posts->category ? $posts->category->name : '-'}}</p>
                         </div>
+                        <div class="box-tag">
+                            <p>Tags:
+                                @forelse ($posts->tags as $tag)
+                                    {{ $tag->name }}{{ !$loop->last ? ',' : '' }}
+                                @empty
+                                    -
+                                @endforelse
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="action">

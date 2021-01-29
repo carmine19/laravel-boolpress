@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -31,10 +32,12 @@ class PostController extends Controller
     public function create()
     {
         $all_category = Category::all();
+        $all_tag = Tag::all();
 
         $data = [
 
             'categories' => $all_category,
+            'tags' => $all_tag,
         ];
 
         return view('admin.posts.create', $data);
@@ -58,6 +61,8 @@ class PostController extends Controller
         // $new_dress->color = $data['color'];
         $new_post->fill($data);
         $new_post->save();
+        //il sync ci permette di salvare i dati multipli che ci arrivano dalla checbox
+        $new_post->tags()->sync($data['tags']);
 
         return redirect()->route('admin.posts.show',['post' => $new_post->id]);
     }
@@ -71,8 +76,10 @@ class PostController extends Controller
     public function show($id)
     {
          $all_post = Post::find($id);
+         $all_tag = Tag::find($id);
         $data = [
             'posts' => $all_post,
+            'tags' => $all_tag,
         ];
         return view('admin.posts.show', $data);
     }
@@ -88,7 +95,8 @@ class PostController extends Controller
 
         $data = [
             'post' => $post,
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'tags' => Tag::all(),
         ];
 
         return view('admin.posts.edit', $data);
@@ -105,6 +113,8 @@ class PostController extends Controller
     {
         $data = $request->all();
         $post->update($data);
+        //il sync ci permette di salvare i dati multipli che ci arrivano dalla checbox
+        $post->tags()->sync($data['tags']);
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
 
@@ -117,6 +127,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $delete_post = Post::find($id);
+        // per cancellare i dati delle tabelle molti a molti, usiamo sempre sync invece di specificare l attach
+        // e detach ogni volta
+        $delete_post->tags()->sync([]);
         $delete_post->delete();
 
         return redirect()->route('admin.posts.index');
