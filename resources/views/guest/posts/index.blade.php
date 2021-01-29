@@ -13,7 +13,7 @@
                             </div>
                             <div class="box-text">
                                 <div class="box-title">
-                                    <h1>{{$post->title}}</h1>
+                                    <a href="{{ route('posts.show', ['slug' => $post->slug]) }}"><h1>{{$post->title}}</h1></a>
                                 </div>
                                 <div class="box-content">
                                     <p>{{$post->content}}</p>

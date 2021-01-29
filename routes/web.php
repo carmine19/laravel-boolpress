@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/contatti', 'HomeController@contatti')->name('contatti');
 Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show');
 
 //rotte che servono ai file di autenticazone
 Auth::routes();
