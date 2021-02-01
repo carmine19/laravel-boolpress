@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+//qui è dove defianiamo le nostre rotte che ci arrivano da backend per poi poterle usare nel frontend con javascript,
+//quindi potremmo usare un qualsiasi framework come vuejs,react angular con ad esempio axios
+Route::get('/posts','Api\PostController@index');
