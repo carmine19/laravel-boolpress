@@ -51,6 +51,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //validazione dati, si passano i dati alla funzione $request che li riceve da create,
+        //da li, prima di salvarli, si convalidano i campi con il metodo chiave => valore.
+        $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'subtitle' => 'required|max:255|nullable',
+            'slug' => 'nullable|max:255',
+            'content'=> 'required',
+            'img' => 'nullable',
+            'category_id' => 'nullable|exists:categories,id',
+        ]);
+
         $data = $request->all();
         $new_post = new Post();
         // $new_dress->name = $data['name'];
@@ -62,7 +73,10 @@ class PostController extends Controller
         $new_post->fill($data);
         $new_post->save();
         //il sync ci permette di salvare i dati multipli che ci arrivano dalla checbox
-        $new_post->tags()->sync($data['tags']);
+        if(array_key_exists('tags', $form_data)) {
+            // aggiungo i tag al post
+            $new_post->tags()->sync($form_data['tags']);
+        }
 
         return redirect()->route('admin.posts.show',['post' => $new_post->id]);
     }
