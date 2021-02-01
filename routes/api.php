@@ -18,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 //qui è dove defianiamo le nostre rotte che ci arrivano da backend per poi poterle usare nel frontend con javascript,
 //quindi potremmo usare un qualsiasi framework come vuejs,react angular con ad esempio axios
 Route::get('/posts','Api\PostController@index');
+//versione api in post
+Route::post('/posts','Api\PostController@index');
+
+
