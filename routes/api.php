@@ -21,4 +21,8 @@ Route::get('/posts','Api\PostController@index');
 //versione api in post
 Route::post('/posts','Api\PostController@index');
 
+Route::get('/category','Api\CategoryController@index');
+
+Route::get('/tags','Api\TagController@index');
+
 
